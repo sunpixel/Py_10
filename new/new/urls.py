@@ -22,5 +22,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='home'),
     path('about/<str:name>/<int:age>', views.about),
-    path('contact', views.contact)
+    path('redirect', views.redirection),
+    path('404', views.error),
+    re_path(r'^redirect/perma', views.perma_redirection),
+    re_path(r'^redirect', views.redirection),
+    re_path(r'^jsresponse/', views.jresponse),
+        re_path(r'^cookie/show', views.show_cookie),
+    re_path(r'^cookie', views.cookie)
 ]
