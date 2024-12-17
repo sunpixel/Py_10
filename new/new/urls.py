@@ -15,8 +15,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, re_path
+from django.urls import path, re_path, include
 from lab10 import views
+from hello import views as v2
+
+product_patterns = [
+    path('', v2.index),
+    path('reviews', v2.reviews)
+]
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +34,7 @@ urlpatterns = [
     re_path(r'^redirect/perma', views.perma_redirection),
     re_path(r'^redirect', views.redirection),
     re_path(r'^jsresponse/', views.jresponse),
-        re_path(r'^cookie/show', views.show_cookie),
-    re_path(r'^cookie', views.cookie)
+    re_path(r'^cookie/show', views.show_cookie),
+    re_path(r'^cookie', views.cookie),
+    path('products/<int:id>', include(product_patterns))
 ]
